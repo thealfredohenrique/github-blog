@@ -1,5 +1,11 @@
+import Profile from "./components/Profile";
+
 function Home() {
-  return <></>;
+  return (
+    <>
+      <Profile />
+    </>
+  );
 }
 
 export default Home;
