@@ -7,6 +7,11 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
+  :focus {
+    outline: transparent;
+    box-shadow: 0 0 0 1px ${(props) => props.theme.blue};
+  }
+
   body {
     -webkit-font-smoothing: antialiased;
     background-color: ${(props) => props.theme.baseBackground};

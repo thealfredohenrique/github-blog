@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const ProfileWrapper = styled.section`
-  width: 54rem;
   height: 13.25rem;
   transform: translateY(-5.5rem);
-  margin: 0 auto;
   padding: 2.5rem 2rem;
   background-color: ${(props) => props.theme.baseProfile};
   box-shadow: 0px 2px 28px 0px rgba(0, 0, 0, 0.2);
@@ -46,6 +44,12 @@ export const ProfileData = styled.div`
       font-weight: 700;
       text-decoration: none;
       text-transform: uppercase;
+      border-bottom: 1px solid transparent;
+      transition: border-color 100ms;
+
+      &:hover {
+        border-color: ${(props) => props.theme.blue};
+      }
     }
   }
 
