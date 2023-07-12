@@ -1,6 +1,7 @@
+import { NavLink } from "react-router-dom";
 import { styled } from "styled-components";
 
-export const PostWrapper = styled.a`
+export const PostWrapper = styled(NavLink)`
   background-color: ${(props) => props.theme.basePost};
   border: 2px solid transparent;
   border-radius: 10px;
@@ -26,6 +27,11 @@ export const PostWrapper = styled.a`
       font-size: 1.25rem;
       font-weight: 700;
       line-height: 160%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
 
     span {
