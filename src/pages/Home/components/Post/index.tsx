@@ -4,13 +4,14 @@ import { PostWrapper } from "./styles";
 
 interface PostProps {
   title: string;
+  code: number;
   createdAt: Date;
   content: string;
 }
 
-function Post({ title, createdAt, content }: PostProps) {
+function Post({ title, code, createdAt, content }: PostProps) {
   return (
-    <PostWrapper to="/">
+    <PostWrapper to={`/issue/${code}`}>
       <header>
         <h1>{title}</h1>
         <span>
