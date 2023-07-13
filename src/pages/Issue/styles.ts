@@ -10,17 +10,24 @@ export const IssueInfo = styled.section`
   header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
 
     a {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 0.5rem;
       color: ${(props) => props.theme.blue};
       font-size: 0.75rem;
       font-weight: 700;
       text-decoration: none;
       text-transform: uppercase;
+      border-bottom: 1px solid transparent;
+      transition: border-color 100ms;
+      padding: 0.25rem 0;
+
+      &:hover {
+        border-color: ${(props) => props.theme.blue};
+      }
     }
   }
 

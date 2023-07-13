@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
+import { formatDistanceToNow } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import {
   faArrowUpRightFromSquare,
@@ -7,11 +10,9 @@ import {
   faChevronLeft,
   faComment,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as services from "../../services/issues";
+import Markdown from "./components/Markdown";
 import { IssueInfo } from "./styles";
-import { formatDistanceToNow } from "date-fns";
-import ptBR from "date-fns/locale/pt-BR";
 
 interface Post {
   id: number;
@@ -75,6 +76,8 @@ function Issue() {
           </span>
         </footer>
       </IssueInfo>
+
+      <Markdown content={post.content} />
     </article>
   );
 }
