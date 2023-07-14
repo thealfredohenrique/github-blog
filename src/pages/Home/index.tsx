@@ -4,6 +4,7 @@ import Post from "./components/Post";
 import Profile from "./components/Profile";
 import Search from "./components/Search";
 import { Posts } from "./styles";
+import debounce from "../../utils/debounce";
 
 interface Post {
   id: number;
@@ -26,10 +27,18 @@ function Home() {
     void fetchPosts();
   }, [fetchPosts]);
 
+  async function handleSearch(query: string): Promise<void> {
+    const issues = query.length
+      ? await services.searchIssues(query)
+      : await services.fetchIssues();
+
+    setPosts(issues);
+  }
+
   return (
     <>
       <Profile />
-      <Search />
+      <Search onSearch={debounce(handleSearch)} />
 
       <Posts>
         {posts.map((post) => (

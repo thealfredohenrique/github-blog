@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import { api } from "../lib/axios";
 
-interface FetchPostResponse {
+interface FetchIssueResponse {
   id: number;
   number: number;
   title: string;
@@ -18,7 +18,7 @@ const GITHUB_USERNAME = "thealfredohenrique";
 const GITHUB_REPO = "github-blog";
 
 export async function fetchIssue(code: string) {
-  const response: AxiosResponse<FetchPostResponse> = await api.get(
+  const response: AxiosResponse<FetchIssueResponse> = await api.get(
     `/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/issues/${code}`
   );
 
@@ -35,11 +35,30 @@ export async function fetchIssue(code: string) {
 }
 
 export async function fetchIssues() {
-  const response: AxiosResponse<FetchPostResponse[]> = await api.get(
+  const response: AxiosResponse<FetchIssueResponse[]> = await api.get(
     `/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/issues`
   );
 
   return response.data.map((e) => ({
+    id: e.id,
+    code: e.number,
+    title: e.title,
+    createdAt: new Date(e.created_at),
+    content: e.body,
+    url: e.html_url,
+  }));
+}
+
+export async function searchIssues(query: string) {
+  const response: AxiosResponse<{
+    items: FetchIssueResponse[];
+  }> = await api.get("/search/issues", {
+    params: {
+      q: query.trim() + `+repo:${GITHUB_USERNAME}/${GITHUB_REPO}/issues`,
+    },
+  });
+
+  return response.data.items.map((e) => ({
     id: e.id,
     code: e.number,
     title: e.title,

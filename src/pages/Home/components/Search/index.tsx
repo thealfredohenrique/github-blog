@@ -1,6 +1,18 @@
+import { ChangeEvent, useState } from "react";
 import { SearchWrapper } from "./styles";
 
-function Search() {
+interface SearchProps {
+  onSearch(query: string): void | Promise<void>;
+}
+
+function Search({ onSearch }: SearchProps) {
+  const [query, setQuery] = useState("");
+
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    setQuery(e.target.value);
+    void onSearch(e.target.value);
+  }
+
   return (
     <SearchWrapper>
       <label htmlFor="search-post">
@@ -12,6 +24,8 @@ function Search() {
         id="search-post"
         placeholder="Buscar conteúdo"
         spellCheck={false}
+        value={query}
+        onChange={handleChange}
       />
     </SearchWrapper>
   );
