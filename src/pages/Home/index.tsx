@@ -38,7 +38,7 @@ function Home() {
   return (
     <>
       <Profile />
-      <Search onSearch={debounce(handleSearch)} />
+      <Search postsQuantity={posts.length} onSearch={debounce(handleSearch)} />
 
       <Posts>
         {posts.map((post) => (

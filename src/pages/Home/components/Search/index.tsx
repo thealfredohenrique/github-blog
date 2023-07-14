@@ -2,10 +2,11 @@ import { ChangeEvent, useState } from "react";
 import { SearchWrapper } from "./styles";
 
 interface SearchProps {
+  postsQuantity: number;
   onSearch(query: string): void | Promise<void>;
 }
 
-function Search({ onSearch }: SearchProps) {
+function Search({ postsQuantity, onSearch }: SearchProps) {
   const [query, setQuery] = useState("");
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -17,7 +18,9 @@ function Search({ onSearch }: SearchProps) {
     <SearchWrapper>
       <label htmlFor="search-post">
         <strong>Publicações</strong>
-        <span>6 publicações</span>
+        <span>
+          {postsQuantity} {postsQuantity === 1 ? "publicação" : "publicações"}
+        </span>
       </label>
       <input
         type="text"
